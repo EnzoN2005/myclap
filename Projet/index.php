@@ -4,6 +4,10 @@
         header("Location:../index.php");
         die("");
     }
+
+	include_once("libs/maLibUtils.php");
+
+	$view = valider("view"); 
 ?>
 
 <!doctype html>
@@ -72,7 +76,7 @@
                 </a>
                 
                 <div class="adminSection">
-                    <span class="menuSeparator">Administration</span>
+                    <span class="menuSeparator"> Administration </span>
                     <a href="index.php?view=admin_gestion" class="menuItem <?php if ($view == 'admin_gestion') echo 'active'; ?>">
                         <span class="ui-icon ui-icon-wrench"></span> Gestion
                     </a>
@@ -89,10 +93,6 @@
         <!-- CONTENU PRINCIPAL -->
         <section class="mainContent">
 			<?php
-				include_once("libs/maLibUtils.php");
-
-				$view = valider("view"); 
-
 				// S'il est $view est vide, on charge la vue accueil par défaut
 				if (!$view) $view = "inventaire"; 
 

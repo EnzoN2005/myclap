@@ -160,6 +160,7 @@ pour ce choix: https://www.hobo-web.co.uk/best-screen-size */
   }
   .logo img {
     transform: scale(2);
+    margin-left: 5px;
   }
 
   .mainHeader{
@@ -201,6 +202,11 @@ pour ce choix: https://www.hobo-web.co.uk/best-screen-size */
     flex-direction: column;
   }
 
+  .menuSeparator {
+    margin-left: 5px;
+  }
+
+  /* Conenu principal */
   .mainContent {
     margin-left: 20px;
   }
