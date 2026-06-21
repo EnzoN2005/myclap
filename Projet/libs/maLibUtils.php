@@ -1,5 +1,9 @@
 <?php
 
+// Session start placé ici car on importe toujours cette bibliothèque, 
+// et ça permet d'accéder à la variable $_SESSION pour savoir qui est connecté
+session_start();
+
 // V1.0 du 18 mai 2018
 
 /**

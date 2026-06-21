@@ -11,4 +11,17 @@
                 
         return parcoursRs(SQLSelect($SQL)); 
     }
+
+    function listerPanier($idUser) {
+
+        $sql = "SELECT * FROM panier WHERE customerId='$idUser'";
+
+        return parcoursRs(SQLSelect($sql));
+    }
+
+    function listerEmprunts($idUser) {
+        $sql = "SELECT * FROM emprunt WHERE user_id='$idUser'";
+
+        return parcoursRs(SQLSelect($sql));
+    }
 ?>
