@@ -1,8 +1,9 @@
 <?php
 session_start();
 	include_once "libs/maLibUtils.php";
-	include("templates/header.php");
 	$view = valider("view"); 
+	include("templates/header.php");
+	
 
 	// S'il est $view est vide,
     // on charge la vue accueil par défaut
