@@ -148,6 +148,7 @@ pour ce choix: https://www.hobo-web.co.uk/best-screen-size */
   .searchBtn:hover {
     background-color: #2d2d2d;       
   }
+
 /*Pour agrandir les différents éléments par rapport à la version mobile*/
   .searchBtn .ui-icon {
     transform: scale(2);           
@@ -163,7 +164,7 @@ pour ce choix: https://www.hobo-web.co.uk/best-screen-size */
 
   .mainHeader{
     height:100px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
   }
   
   .nbEmprunts {
@@ -171,6 +172,37 @@ pour ce choix: https://www.hobo-web.co.uk/best-screen-size */
     padding: 4px 7px;
     top: -17px;
     left: 1px;
+  }
+
+  /* Pour la sidebar */
+  .mainZone {
+    display: flex;
+  }
+
+  .sideBar {
+    width: 175px;
+    min-height: 100vh;
+    background: #1a1a1a;
+  }
+
+  .sideBarMenu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menuItem {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+  }
+
+  .adminSection {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mainContent {
+    margin-left: 20px;
   }
 
 }

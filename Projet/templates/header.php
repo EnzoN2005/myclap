@@ -24,6 +24,7 @@
 <!-- **** B O D Y **** -->
 <body>
 
+    /* Header : logo et barre de recherche */
     <header class="mainHeader">
         <div class="logo">
             <a href="index.php?view=inventaire">
@@ -54,7 +55,10 @@
         </div>
     </header>
 
+    /* Contenu de la page */ 
     <main class="mainZone">
+
+        /* Sidebar */
         <aside class="sideBar" id="sideBar">
             <nav class="sideBarMenu">
                 <a href="index.php?view=inventaire" class="menuItem <?php if ($view == 'inventaire' || !$view) echo 'active'; ?>">
@@ -81,5 +85,13 @@
                 </div>
             </nav>
         </aside>
+
+        /* Contenu de chaque page */
+        <section>
+
+        </section>
+
+    </main>
+    
 </body>
 <!-- **** F I N **** B O D Y **** -->
