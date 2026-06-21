@@ -1,5 +1,9 @@
 <?php
 
+// Session start placé ici car on importe toujours cette bibliothèque, 
+// et ça permet d'accéder à la variable $_SESSION pour savoir qui est connecté
+session_start();
+
 // V1.0 du 18 mai 2018
 
 /**
@@ -67,6 +71,7 @@ function getValue($nom,$defaut=false,$type="REQUEST")
 	return $resultat;
 }
 
+
 /**
 *
 * Evite les injections SQL en protegeant les apostrophes par des '\'
@@ -94,7 +99,6 @@ function proteger($str)
 }
 
 
-
 function tprint($tab)
 {
 	echo "<pre>\n";
@@ -118,14 +122,17 @@ function rediriger($url,$qs="")
 	// TODO: on pourrait passer en parametre le message servant au die...
 }
 
-// TODO: intégrer les redirections vers la page index dans une fonction :
 
-/*
-// Si la page est appelée directement par son adresse, on redirige en passant pas la page index
-if (basename($_SERVER["PHP_SELF"]) != "index.php")
-{
-	header("Location:../index.php");
-	die("");
-}
+/**
+* Si la page est appelée directement par son adresse, on redirige en passant pas la page index
+* @param string $pageName
 */
+function redirigerParIndexVers($pageName) {
+
+	if (basename($_SERVER["PHP_SELF"]) == "$pageName.php")
+    {
+        header("Location:../index.php?view=$pageName");
+        die("");
+    }
+}
 ?>

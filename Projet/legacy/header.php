@@ -1,12 +1,15 @@
 <?php
-if (basename($_SERVER["PHP_SELF"]) != "index.php")
-{
-	header("Location:../index.php");
-	die("");
-}
+    if (basename($_SERVER["PHP_SELF"]) != "index.php")
+    {
+        header("Location:../index.php");
+        die("");
+    }
 ?>
+
 <!doctype html>
 <html lang="fr">
+  
+<!-- **** H E A D **** -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +24,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 <!-- **** B O D Y **** -->
 <body>
 
+    /* Header : logo et barre de recherche */
     <header class="mainHeader">
         <div class="logo">
             <a href="index.php?view=inventaire">
@@ -51,7 +55,10 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
         </div>
     </header>
 
+    /* Contenu de la page */ 
     <main class="mainZone">
+
+        /* Sidebar */
         <aside class="sideBar" id="sideBar">
             <nav class="sideBarMenu">
                 <a href="index.php?view=inventaire" class="menuItem <?php if ($view == 'inventaire' || !$view) echo 'active'; ?>">
@@ -79,3 +86,12 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
             </nav>
         </aside>
 
+        /* Contenu de chaque page */
+        <section>
+
+        </section>
+
+    </main>
+    
+</body>
+<!-- **** F I N **** B O D Y **** -->
