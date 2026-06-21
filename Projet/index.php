@@ -1,7 +1,10 @@
 <?php
-session_start();
-	include_once "libs/maLibUtils.php";
+	session_start();
+
+	include_once("libs/maLibUtils.php");
+
 	include("templates/header.php");
+
 	$view = valider("view"); 
 
 	// S'il est $view est vide,
@@ -42,7 +45,4 @@ session_start();
 
 
 	include("templates/footer.php");
-
-
-	
 ?>

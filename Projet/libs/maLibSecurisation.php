@@ -38,8 +38,6 @@ function verifUser($login,$password)
 }
 
 
-
-
 /**
  * Fonction à placer au début de chaque page privée
  * Cette fonction redirige vers la page $urlBad en envoyant un message d'erreur 

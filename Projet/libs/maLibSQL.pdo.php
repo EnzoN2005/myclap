@@ -90,7 +90,6 @@ function SQLInsert($sql)
 }
 
 
-
 /**
 * Effectue une requete SELECT dans une base de données SQL SERVER, pour récupérer uniquement un champ (la requete ne doit donc porter que sur une valeur)
 * Renvoie FALSE si pas de resultats, ou la valeur du champ sinon
@@ -181,10 +180,5 @@ function parcoursRs($result)
 
 	return $tab;
 }
-
-
-
-
-
 
 ?>

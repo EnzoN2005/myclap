@@ -67,6 +67,7 @@ function getValue($nom,$defaut=false,$type="REQUEST")
 	return $resultat;
 }
 
+
 /**
 *
 * Evite les injections SQL en protegeant les apostrophes par des '\'
@@ -92,7 +93,6 @@ function proteger($str)
 		return addslashes ($str);
 	//return str_replace("'","''",$str); 	//utile pour les serveurs de bdd Crosoft
 }
-
 
 
 function tprint($tab)
