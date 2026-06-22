@@ -14,13 +14,25 @@
 
     function listerPanier($idUser) {
 
-        $sql = "SELECT * FROM panier WHERE customerId='$idUser'";
+        $sql = "SELECT nom, itemQte, dateDebutEmprunt, dateFinEmprunt
+        FROM panier 
+        INNER JOIN panier_item 
+        ON panier.id=panier_item.panierId
+        INNER JOIN produit
+        ON produit.id = panier_item.productId
+        WHERE customerId='$idUser'";
 
         return parcoursRs(SQLSelect($sql));
     }
 
     function listerEmprunts($idUser) {
-        $sql = "SELECT * FROM emprunt WHERE user_id='$idUser'";
+        $sql = "SELECT nom, start_date, end_date, emprunt.status 
+        FROM emprunt
+        INNER JOIN emprunt_item
+        ON emprunt.id = emprunt_item.emprunt_id
+        INNER JOIN produit
+        ON emprunt_item.product_id = produit.id
+        WHERE user_id='$idUser'";
 
         return parcoursRs(SQLSelect($sql));
     }
