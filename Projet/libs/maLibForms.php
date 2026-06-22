@@ -90,6 +90,16 @@ function mkTable($tabData,$listeChamps=false)
 	
 }
 
+function mkTableBody($panier) {
+	foreach ($panier as $item) {
+		echo "<tr>\n";
+		foreach ($item as $champ => $val) {
+			echo "\t<td>$val</td>\n";
+		}
+		echo "</tr>\n";
+	}
+}
+
 // Produit un menu déroulant portant l'attribut name = $nomChampSelect
 
 // Produit les options d'un menu déroulant à partir des données passées en premier paramètre
