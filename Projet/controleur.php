@@ -24,6 +24,68 @@
                 echo "blablabla";
                 $qs = "?view=mes_emprunts";
             break;
+
+            case 'Se connecter':
+				
+                if ($nom = valider('nom'))
+					
+					
+                if ($passe = valider('passe'))
+					
+                    if (verifUser($nom,$passe))
+                       {
+						$qs = "?view=accueil";
+					   
+					    	
+					   }
+            break;   
+
+			case 'Logout': 
+				
+				session_destroy();
+				$qs = "?view=accueil";
+
+			break;
+
+			
+			
+			case 'Créer mon compte' :
+				
+				if ($Nom = valider('nom'))
+					
+				if ($contact = valider('contact'))
+					
+                if ($passe = valider('passe'))
+					{
+						
+					
+					ajouterUtilisateur($nom,$contact, $passe);
+					
+					}
+				$qs = "?view=accueil"; 
+
+
+
+			break;
+
+
+			case 'Rendre administrateur' :
+				
+				if ($idUser = valider('idUser'))
+					{ rendreAdmin($idUser);
+
+					}
+				$qs = "?view=admin"; 
+			break;
+
+			case 'Retirer rôle administrateur' :
+				
+				if ($idUser = valider('idUser'))
+					{ retirerAdmin($idUser);
+
+					}
+				$qs = "?view=admin"; 
+			break;
             
         }
     }
