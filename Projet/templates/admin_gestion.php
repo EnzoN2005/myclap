@@ -42,21 +42,3 @@ mkInput("submit", "action", "Retirer rôle administrateur");
 endForm();
 
 
-/*
-?>
-
-<h2> Tous les utilisateurs ayants accès </h2>
-
-<?php
-$utilisateurs=listerUtilisateurs();
-mkTable($utilisateurs, array("nom", "contact", "numAppart","role"));
-mkForm("controleur.php");
-mkSelect("idUser", $utilisateurs, "id", "email");
-mkInput("submit", "action", "Retirer accès");
-mkInput("submit", "action", "Rendre administrateur");
-mkInput("submit", "action", "Retirer rôle administrateur");
-
-endForm();
-?>
-</scrypt>
-*/

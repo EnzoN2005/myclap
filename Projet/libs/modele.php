@@ -36,4 +36,89 @@
 
         return parcoursRs(SQLSelect($sql));
     }
+
+    function listerUtilisateurs($tri = "tout") {
+    $SQL = "SELECT nom, contact, role, id, numAppart, points FROM user ORDER BY id DESC";
+
+    
+    return parcoursRS(SQLSelect($SQL));
+}
+
+
+function isAdmin($idUser)
+{
+	$SQL = "SELECT role FROM user WHERE id='$idUser' and role=1"; 
+	return SQLGetChamp($SQL);
+	// vérifie si l'utilisateur est un administrateur
+}
+
+
+function ajouterUtilisateur($nom, $contact, $passe ){
+    $SQL= "INSERT INTO user(nom, contact, mdp,) VALUES ('$nom','$contact','$passe') ";
+    return SQLInsert($SQL);
+}
+
+
+function verifUserBdd($nom,$passe){
+    $SQL="SELECT id from user WHERE nom='$nom' AND mdp='$passe'";
+    return SQLGetChamp($SQL); 
+
+
+}
+
+function rendreAdmin($idUser){
+    $SQL="UPDATE user SET role=1 WHERE id='$idUser'";
+    SQLUpdate($SQL);
+}
+
+function retirerAdmin($idUser){
+    $SQL="UPDATE user SET role=0 WHERE id='$idUser'";
+    SQLUpdate($SQL);
+
+
+}
+
+function gestionEmprunts($userId) {
+   
+    $sql = "SELECT 
+                COALESCE(SUM(CASE WHEN status = 'fini' THEN 1 ELSE 0 END), 0) AS emprunts_termines,
+                COALESCE(SUM(CASE WHEN status = 'en cours' THEN 1 ELSE 0 END), 0) AS emprunts_en_cours
+            FROM emprunt
+            WHERE user_id = $userId";
+   
+    if (SQLSelect($sql) !== false) {
+       
+        $tableauResultats = parcoursRs(SQLSelect($sql));
+        
+       
+        if (!empty($tableauResultats)) {
+            return $tableauResultats[0];
+        }
+    }
+ return [
+        'emprunts_termines' => 0, 
+        'emprunts_en_cours' => 0
+    ];
+}
+
+function listerUtilisateursEtEmprunts() {
+    
+    $utilisateurs = listerUtilisateurs();
+    
+    if (empty($utilisateurs)) {
+        return [];
+    }
+
+    foreach ($utilisateurs as &$user) {
+        
+        $stats = gestionEmprunts($user['id']);
+        
+        $user['emprunts_termines'] = $stats['emprunts_termines'];
+        $user['emprunts_en_cours'] = $stats['emprunts_en_cours'];
+    }
+    
+    return $utilisateurs;
+}
+
+
 ?>
