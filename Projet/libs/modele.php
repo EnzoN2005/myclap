@@ -38,7 +38,7 @@
     }
 
     function listerUtilisateurs($tri = "tout") {
-    $SQL = "SELECT nom, contact, role, id, numAppart, points FROM user ORDER BY id DESC";
+    $SQL = "SELECT name, contact, role, id, flat_num, score FROM user ORDER BY id DESC";
 
     
     return parcoursRS(SQLSelect($SQL));
@@ -53,14 +53,14 @@ function isAdmin($idUser)
 }
 
 
-function ajouterUtilisateur($nom, $contact, $passe ){
-    $SQL= "INSERT INTO user(nom, contact, mdp,) VALUES ('$nom','$contact','$passe') ";
+function ajouterUtilisateur($name, $contact, $password ){
+    $SQL= "INSERT INTO user(name, contact, password) VALUES ('$name','$contact','$password') ";
     return SQLInsert($SQL);
 }
 
 
 function verifUserBdd($nom,$passe){
-    $SQL="SELECT id from user WHERE nom='$nom' AND mdp='$passe'";
+    $SQL="SELECT id from user WHERE name='$nom' AND password='$passe'";
     return SQLGetChamp($SQL); 
 
 
@@ -124,5 +124,63 @@ function filtrerEmprunts($filtre) {
 
 }
 
+
+/**
+ * Récupère la liste des emprunts triée selon un critère
+ * @param string $critereTri Le filtre sélectionné (statut, utilisateurs, etc.)
+ * @return array Tableau associatif contenant les emprunts
+ */
+function getEmpruntsTries($critereTri = '') {
+    // Requête de base avec une jointure pour récupérer le nom de l'utilisateur
+    $sql = "SELECT e.id, e.start_date, e.end_date, e.return_date, e.status, u.name AS nom_utilisateur 
+            FROM emprunt e 
+            LEFT JOIN user u ON e.user_id = u.id";
+
+    // Ajout de la clause de tri en fonction du filtre reçu
+    switch ($critereTri) {
+        case 'statut':
+            $sql .= " ORDER BY e.status ASC";
+            break;
+        case 'utilisateurs':
+            // On trie par le nom de l'utilisateur joint
+            $sql .= " ORDER BY u.name ASC";
+            break;
+        case 'date_emprunt':
+            // Généralement, on veut les plus récents en premier (DESC)
+            $sql .= " ORDER BY e.start_date DESC";
+            break;
+        case 'date_retour':
+            $sql .= " ORDER BY e.return_date DESC";
+            break;
+        default:
+            // Tri par défaut si aucun filtre n'est sélectionné ou filtre inconnu
+            $sql .= " ORDER BY e.id DESC"; 
+            break;
+    }
+
+    // Exécution de la requête via ta librairie
+    $resultat = SQLSelect($sql);
+    
+    // Retourne le résultat sous forme de tableau associatif
+    return parcoursRs($resultat);
+}
+function listerEmpruntsStatut($statut) {
+    
+    $statutsPossibles = ['CART', 'PENDING', 'VALIDATED', 'RETRIEVED', 'RETURNED'];
+
+    $SQL = "SELECT e.id, e.start_date, e.end_date, e.return_date, e.status, u.name AS nom_utilisateur 
+            FROM emprunt e
+            LEFT JOIN user u ON e.user_id = u.id
+            WHERE e.status = '$statut'
+            ORDER BY e.start_date DESC";
+
+
+    return parcoursRs(SQLSelect($SQL));
+}
+
+function changerStatutEmprunt($idEmprunt,$nouveauStatut){
+    $SQL = "UPDATE emprunt SET status = '$nouveauStatut' WHERE id = $idEmprunt";   
+    return SQLUpdate($SQL);           
+}
 
 ?>

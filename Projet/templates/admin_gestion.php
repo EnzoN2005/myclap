@@ -29,12 +29,12 @@ if ($_SESSION["isAdmin"] ==false) {
 $utilisateurs=listerUtilisateursEtEmprunts();
 
 
-mkTable($utilisateurs, array("nom", "contact", "numAppart","emprunts_termines","emprunts_en_cours","points", "role"));
+mkTable($utilisateurs, array("name", "contact", "flat_num","emprunts_termines","emprunts_en_cours","score", "role"));
 
 $utilisateurs=listerUtilisateurs("En attente","eleve");
 mkForm("controleur.php");
 echo"</br>";
-mkSelect("idUser", $utilisateurs, "id", "nom");
+mkSelect("idUser", $utilisateurs, "id", "name");
 mkInput("submit", "action", "Rendre administrateur");
 mkInput("submit", "action", "Retirer rôle administrateur");
 

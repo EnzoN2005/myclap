@@ -51,15 +51,15 @@
 			
 			case 'Créer mon compte' :
 				
-				if ($Nom = valider('nom'))
+				if ($name = valider('name'))
 					
 				if ($contact = valider('contact'))
 					
-                if ($passe = valider('passe'))
+                if ($password = valider('password'))
 					{
 						
 					
-					ajouterUtilisateur($nom,$contact, $passe);
+					ajouterUtilisateur($name,$contact, $password);
 					
 					}
 				$qs = "?view=accueil"; 
@@ -86,6 +86,26 @@
 					}
 				$qs = "?view=admin_gestion"; 
 			break;
+
+            case 'afficher les emprunts' :
+                $filtre = isset($_GET['filtre']) ? $_GET['filtre'] : '';
+    
+    // Appel à la couche modèle pour récupérer les données triées
+                 $listeEmprunts = getEmpruntsTries($filtre);
+                $qs = "?view=admin_emprunts";
+            break;
+
+            case 'Modifier le statut' : 
+                if ($idEmprunt = valider('idEmprunt'))
+					
+				if ($statutSelectionne = valider('statutSelectionne')){
+                    
+                    changerStatutEmprunt($idEmprunt,$statutSelectionne);
+                }
+
+                $qs = "?view=admin_emprunts&filtre=statut&action=afficher+les+emprunts";
+                break;
+
             
         }
     }

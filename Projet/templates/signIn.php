@@ -10,11 +10,11 @@ include_once("libs/maLibForms.php");// mkTable, mkLiens, mkSelect ...
 
 mkForm("controleur.php");
 echo "Nom complet : ";
-mkInput("text", "Nom");
+mkInput("text", "name");
 echo "<br/> email tel ou facebook : ";
 mkInput("text", "contact");
 echo "<br/>  mot de passe : ";
-mkInput("text", "passe");
+mkInput("text", "password");
 echo "<br/>";
 mkInput("submit", "action", "Créer mon compte");
 endForm();
