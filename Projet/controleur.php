@@ -3,7 +3,7 @@
 
     include_once "libs/maLibUtils.php";
     // include_once "libs/maLibSQL.pdo.php";
-    // include_once "libs/modele.php"; 
+     include_once "libs/modele.php"; 
 
     $qs = "?view=inventaire";
     
@@ -75,7 +75,7 @@
 					{ rendreAdmin($idUser);
 
 					}
-				$qs = "?view=admin"; 
+				$qs = "?view=admin_gestion"; 
 			break;
 
 			case 'Retirer rôle administrateur' :
@@ -84,7 +84,7 @@
 					{ retirerAdmin($idUser);
 
 					}
-				$qs = "?view=admin"; 
+				$qs = "?view=admin_gestion"; 
 			break;
             
         }

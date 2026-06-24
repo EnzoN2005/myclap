@@ -120,5 +120,9 @@ function listerUtilisateursEtEmprunts() {
     return $utilisateurs;
 }
 
+function filtrerEmprunts($filtre) {
+
+}
+
 
 ?>
