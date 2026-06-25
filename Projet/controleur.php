@@ -2,8 +2,9 @@
     session_start();
 
     include_once "libs/maLibUtils.php";
-    // include_once "libs/maLibSQL.pdo.php";
-     include_once "libs/modele.php"; 
+     include_once "libs/maLibSQL.pdo.php";
+     include_once "libs/modele.php";
+     include_once("libs/maLibSecurisation.php"); 
 
     $qs = "?view=inventaire";
     
@@ -27,12 +28,12 @@
 
             case 'Se connecter':
 				
-                if ($nom = valider('nom'))
+                if ($name = valider('name'))
 					
 					
-                if ($passe = valider('passe'))
+                if ($password = valider('password'))
 					
-                    if (verifUser($nom,$passe))
+                    if (verifUser($name,$password))
                        {
 						$qs = "?view=accueil";
 					   
@@ -96,6 +97,8 @@
             break;
 
             case 'Modifier le statut' : 
+                if ($filtre = valider('filtre')) 
+
                 if ($idEmprunt = valider('idEmprunt'))
 					
 				if ($statutSelectionne = valider('statutSelectionne')){
@@ -103,7 +106,7 @@
                     changerStatutEmprunt($idEmprunt,$statutSelectionne);
                 }
 
-                $qs = "?view=admin_emprunts&filtre=statut&action=afficher+les+emprunts";
+                $qs = "?view=admin_emprunts&filtre=$filtre&action=afficher+les+emprunts";
                 break;
 
             

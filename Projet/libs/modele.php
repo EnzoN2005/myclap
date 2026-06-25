@@ -183,4 +183,12 @@ function changerStatutEmprunt($idEmprunt,$nouveauStatut){
     return SQLUpdate($SQL);           
 }
 
+function listerEmpruntsUtilisateurs() {
+    $SQL = "SELECT  u.id AS user_id,  u.name AS nom_utilisateur,  u.contact, e.id AS emprunt_id,  e.start_date, e.end_date,  e.return_date, e.status"; 
+    $SQL .= " FROM user u INNER JOIN emprunt e ON u.id = e.user_id ORDER BY u.name ASC, e.start_date DESC";
+
+   
+    return parcoursRs(SQLSelect($SQL));
+}
+
 ?>
